@@ -3,15 +3,16 @@ $servername = "localhost:3306";
 $username = "root";
 $password = "Hbouki.2002";
 $dbname = "arbre_competence";
+
 try {
     $conn = new PDO("mysql:host=$servername;dbname=" . $dbname, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // echo "Connected successfully";
 
     $sql = "SELECT * FROM `personne`";
     $result = $conn->query($sql);
 
-    echo "<table border='1'>";
+    echo "<div class='table-responsive'>";
+    echo "<table class='table table-striped'>";
     echo "<tr><th>ID</th><th>Full Name</th><th>Email</th></tr>";
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -23,14 +24,11 @@ try {
     }
 
     echo "</table>";
+    echo "</div>";
 
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 
-
 // phpinfo();
-
-
-
 ?>
